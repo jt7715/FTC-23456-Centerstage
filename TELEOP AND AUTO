@@ -1,3 +1,5 @@
+// below are the combined codes for both teleop and auto 
+
 //TELEOP MECANUM 
 package org.firstinspires.ftc.teamcode;
 
