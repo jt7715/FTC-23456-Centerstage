@@ -1,7 +1,0 @@
-//control the arm w the servo
-if(gamepad1.dpad_up){
-       arm.setPower(0.3);         
-            }
-else if (gamepad1.dpad_down){
-       arm.setPower(-0.3); 
-            }   
