@@ -1,0 +1,106 @@
+// BLUE FAR AUTO 
+
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+@Autonomous
+
+public class BlueFarAuto extends LinearOpMode{
+
+    private DcMotor frontLeftMotor;
+    private DcMotor backLeftMotor;
+    private DcMotor frontRightMotor;
+    private DcMotor backRightMotor;
+    
+    public void init_mine(){
+          // Declare our motors
+        // Make sure your ID's match your configuration
+         frontLeftMotor = hardwareMap.get(DcMotor.class, "frontLeftMotor");
+         backLeftMotor = hardwareMap.get(DcMotor.class, "backLeftMotor");
+         frontRightMotor = hardwareMap.get(DcMotor.class, "frontRightMotor");
+         backRightMotor = hardwareMap.get(DcMotor.class, "backRightMotor");
+
+        // Reverse the right side motors. This may be wrong for your setup.
+        // If your robot moves backwards when commanded to go forwards,
+        // reverse the left side instead.
+        // See the note about this earlier on this page.
+        frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        
+    }
+    
+    public void moveForward(double seconds)
+    {
+        frontLeftMotor.setPower(0.5);
+        frontRightMotor.setPower(0.5);
+        backRightMotor.setPower(0.5);
+        backLeftMotor.setPower(0.5);
+        
+        wait(seconds);
+        
+    }
+    
+     public void moveBack(double seconds){
+        frontLeftMotor.setPower(-0.5);
+        frontRightMotor.setPower(-0.5);
+        backRightMotor.setPower(-0.5);
+        backLeftMotor.setPower(-0.5);
+        
+        wait(seconds);
+        
+    }
+    
+    public void turnLeft(double seconds){
+        frontLeftMotor.setPower(-0.5);
+        frontRightMotor.setPower(0.5);
+        backRightMotor.setPower(0.5);
+        backLeftMotor.setPower(-0.5);
+        
+        
+        wait(seconds);
+    }
+    
+    public void turnRight(double seconds)
+    {
+        frontLeftMotor.setPower(0.5);
+        frontRightMotor.setPower(-0.5);
+        backRightMotor.setPower(-0.5);
+        backLeftMotor.setPower(0.5);
+        
+        wait(seconds);
+    }
+    
+    public void strafe(double seconds,double power)
+    {
+        frontLeftMotor.setPower(power);
+        frontRightMotor.setPower(-power);
+        backRightMotor.setPower(power);
+        backLeftMotor.setPower(-power);
+        
+        wait(seconds);
+        
+    }
+    public void wait(double seconds)
+    {
+        resetRuntime();
+    while (getRuntime()<seconds && opModeIsActive());
+    }
+    
+    
+    public void runOpMode() throws InterruptedException{
+        init_mine();
+        waitForStart();
+        
+        strafe(0.25,0.5);
+        moveBack(7);
+        
+        
+    }
+    
+}
